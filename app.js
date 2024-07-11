@@ -26,6 +26,7 @@ const dataPizza = [
     price: 495,
   },
 ]
+const cart = []
 // DOM
 const list = document.querySelector('.list') // <div></div>
 // popup DOM
@@ -34,6 +35,12 @@ const pName = document.querySelector('.name')
 const pDesc = document.querySelector('.desc')
 const pPrice = document.querySelector('.price')
 const popUpClose = document.querySelector(".popup__close")
+const addToCartBtn = document.querySelector('.desc + button')
+const cartCount = document.querySelector('.cart span')
+const cartBtn = document.querySelector('.cart')
+const cartList = document.querySelector('.cart-list')
+const overlay = document.querySelector('.overlay')
+const x = document.querySelector('.x')
 
 popUpClose.addEventListener('click', () => {
   document.querySelector('.popup').style.display = 'none';
@@ -62,3 +69,19 @@ function openPopUp(idx) {
   pDesc.innerText = dataPizza[i].description
   pPrice.innerText = dataPizza[i].price
 }
+
+addToCartBtn.addEventListener('click', () => {
+  const pizza = dataPizza[index - 1]
+  cart.push(pizza)
+  cartCount.innerText = `| ${cart.length}`
+})
+
+cartBtn.addEventListener('click', () => { 
+  cartList.style.display = 'block'
+  overlay.style.display = 'block'
+})
+
+x.addEventListener('click', () => { 
+  cartList.style.display = 'none'
+  overlay.style.display = 'none'
+})
